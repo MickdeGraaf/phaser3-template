@@ -28,6 +28,8 @@ class Terrain {
             height: 256
         });
 
+        // this.map.x
+
         console.log("creating terrain");
 
         this.map = this.scene.make.tilemap({key: "map", tileWidth: 16, tileHeight: 16, height: 64, width: 64})
