@@ -5,8 +5,8 @@ const config: Phaser.Types.Core.GameConfig = {
     type: Phaser.AUTO,
     pixelArt: true,
     roundPixels: true,
-    width: 800,
-    height: 600,
+    // width: 800,
+    // height: 600,
     physics: {
         default: 'arcade',
         arcade: {
@@ -21,6 +21,7 @@ const config: Phaser.Types.Core.GameConfig = {
         mode: Phaser.Scale.FIT,
         // Center vertically and horizontally
         autoCenter: Phaser.Scale.CENTER_BOTH
+        
     },
 };
 

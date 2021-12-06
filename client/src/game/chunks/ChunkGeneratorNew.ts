@@ -1,5 +1,5 @@
 import Simplex from "simplex-noise";
-
+import {default as memoize} from "memoizee";
 const CHUNK_SIZE = 32;
 
 class ChunkGenerator {
@@ -18,14 +18,14 @@ class ChunkGenerator {
 
 
     generateChunk(chunkX: number, chunkY: number) {
-        const ground: number[][] = [];
+        const ground: string[][] = [];
 
 
         // rows
-        for(let x = 0; x < CHUNK_SIZE; x++) {
+        for(let y = 0; y < CHUNK_SIZE; y++) {
             const row = [];
 
-            for(let y = 0; y < CHUNK_SIZE; y++) {
+            for(let x = 0; x < CHUNK_SIZE; x++) {
                 
 
                 let value = 0;
@@ -51,9 +51,17 @@ class ChunkGenerator {
                     }
                 }
 
+                
+                if(value < 0.6) { //land
+                    row.push("land");
+                } else { //water
+                    row.push("water");
+                }
+                
+
                 // console.log(value);
 
-                row.push(value);
+                // row.push(value);
 
             }
 
@@ -63,10 +71,14 @@ class ChunkGenerator {
 
 
         return({
+            x: chunkX,
+            y: chunkY,
             ground
         })
 
     }
+
+    generateChunkMemoized = memoize(this.generateChunk);
 
 
 }

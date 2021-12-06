@@ -28,6 +28,7 @@ class MainScene extends Scene {
         this.player.preload();
         this.multiplayerConnector = new MultiPlayerConnector(this.player);
         this.multiplayerConnector.connect("http://192.168.255.36:8081/");
+        this.load.image('tileImage', tileImage);
         this.load.spritesheet('tilesSprite', tileImage, {frameWidth: 16, frameHeight: 16});
         // new Tile(this, 0, 0, 755).preload();
         // @ts-ignore
@@ -40,7 +41,7 @@ class MainScene extends Scene {
         // @ts-ignore
         this.player.create();
 
-        this.cameras.main.zoom = 2;
+        this.cameras.main.zoom = 1;
         //@ts-ignore
         this.cameras.main.startFollow(this.player);
 
@@ -87,20 +88,6 @@ class MainScene extends Scene {
 
         // create chunk in 2 chunk radius
         const radius = 1;
-        // for (var x = snappedChunkX - radius ; x < snappedChunkX + radius ; x++) {
-        //     for (var y = snappedChunkY - radius ; y < snappedChunkY + radius ; y++) {
-        //         var existingChunk = this.getChunk(x, y);
-        
-        //         if (existingChunk == null) {
-        //             var newChunk = new Chunk(this, x, y);
-        //             // newChunk.load();
-        //             this.chunks.push(newChunk);
-        //         }
-        //     }
-        // }
-
-        // let x = snappedChunkX - radius;
-        // let y = snappedChunkY - radius;
 
 
         for(let x = snappedChunkX - radius; x <= snappedChunkX + radius; x ++) {
@@ -115,37 +102,10 @@ class MainScene extends Scene {
             }
         }
 
-        // for(let i = 0; i < Math.pow(radius * 2, 2) - 1; i ++) {
-
-            
-
-        //     var existingChunk = this.getChunk(x, y);
-        
-        //     if (existingChunk == null) {
-        //         var newChunk = new Chunk(this, x, y);
-        //         // newChunk.load();
-        //         this.chunks.push(newChunk);
-        //     }
-
-            
-        //     x ++;
-
-        //     if(i % ((radius * (2 + 1))) == 0 && i != 0) {
-        //         y ++;
-        //         x = snappedChunkX - radius;
-        //     }
-
-            
-
-        //     console.log(i);
-        // }
-
-        console.log("Chunk lenghth 1:", this.chunks.length);
-
 
         for (let i = this.chunks.length - 1; i >=0 ; i --) {
             const chunk = this.chunks[i];
-            console.log(chunk);
+            // console.log(chunk);
 
             if(this.getDiff(snappedChunkX, chunk.x) > radius || this.getDiff(snappedChunkY, chunk.y) > radius ) {
                 // console.log(`Loading chunk: ${chunk.x}, ${chunk.y}`);
