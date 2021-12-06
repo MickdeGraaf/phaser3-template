@@ -6,7 +6,7 @@ class Player extends Character {
     }
 
     handleControls() {
-
+        const speed = 2;
         // console.log("doing controls");
 
         if(!this.keyInputs) {
@@ -14,19 +14,19 @@ class Player extends Character {
         }
 
         if(this.keyInputs.left.isDown){
-            this.x = this.x - 2;
+            this.x = this.x - speed;
             this.setPlayerState("walk-left");
         }
         else if(this.keyInputs.right.isDown){
-            this.x = this.x + 2;
+            this.x = this.x + speed;
             this.setPlayerState("walk-right");
         }
         else if(this.keyInputs.up.isDown){
-            this.y = this.y - 2;
+            this.y = this.y - speed;
             this.setPlayerState("walk-up");
         }
         else if(this.keyInputs.down.isDown){
-            this.y = this.y + 2;
+            this.y = this.y + speed;
             this.setPlayerState("walk-down");
         }
         else { 
